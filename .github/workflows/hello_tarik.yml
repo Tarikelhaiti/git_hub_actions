@@ -1,0 +1,22 @@
+name: tarik_workflow
+on:
+  push:
+    branches: main
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      name: tarik
+      email: tarik.elhaiti@gmail.com
+
+    steps:
+      - name: check out the repo
+        uses: actions/checkout@v4
+
+      - name: saluer l'utilisateur ${{ env.name }}
+        run: |
+          echo " hello $name "
+          echo "is that : $email your email ? "
+        
+        
