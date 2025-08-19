@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  demo:
     runs-on: ubuntu-latest
     env:
       NAME: "tarik"
@@ -17,6 +17,10 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
+        
+      - name: lidt repository file
+        run: ls -al
+      
 
       - name: Saluer l'utilisateur ${{ env.NAME }}
         run: |
