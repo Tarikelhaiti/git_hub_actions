@@ -20,5 +20,5 @@ jobs:
 
       - name: Saluer l'utilisateur ${{ env.NAME }}
         run: |
-          echo "Hello $NAME"
-          echo "Is this your email: $EMAIL ?"
+          echo " Hello $NAME "
+          echo " Is this your email: $EMAIL ? "
