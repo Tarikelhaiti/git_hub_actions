@@ -1,8 +1,23 @@
 on:
   workflow_dispatch:
+    inputs:
+      environement:
+        description: choose your enviroment 
+        required: true
+        default: "proto"
+        type: choice
+        options:
+         - dev
+         - ass
+         - prod
+         - ass-build
+         - perf
+         - proto
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    
     steps:
       - name: deploy application
         run: echo " deploying the application "
