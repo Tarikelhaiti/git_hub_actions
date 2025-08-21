@@ -1,10 +1,11 @@
-#!/bin/bash
+# src/test.sh
+#!/usr/bin/env bash
+set -euo pipefail
 
 EXPECTED="Hello, Test!"
+OUTPUT=$(node -e "process.stdout.write(require('./src/app')('Test'))")
 
-OUTPUT=$(node -e "console.log(require('./src/app')('Test'))")
-
-if [ "$OUTPUT" == "$EXPECTED" ]; then
+if [ "$OUTPUT" = "$EXPECTED" ]; then
   echo "✅ Test passed!"
   exit 0
 else
