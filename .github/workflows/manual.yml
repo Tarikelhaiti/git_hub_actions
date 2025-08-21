@@ -1,24 +1,13 @@
 on:
-  workflow_dispatch:
-    inputs:
-      environement:
-        description: choose your enviroment 
-        required: true
-        default: "proto"
-        type: choice
-        options:
-         - dev
-         - ass
-         - prod
-         - ass-build
-         - perf
-         - proto
+  repository_dispatch:
+    types:
+      - incident_report
 jobs:
-  deploy:
+  handle-incident:
     runs-on: ubuntu-latest
-
-    
     steps:
-      - name: deploy application
-        run: echo " deploying the application on ${{ inputs.environement }} "
+      - name: print incident details
+        run: echo " incident reported "
+
         
+      
