@@ -1,30 +1,31 @@
 on:
   workflow_dispatch:
+
 jobs:
-  job_1:
+  hybrid-job: 
     runs-on: ubuntu-latest
     steps:
-      - name: mention job 1
-        run : echo " My name is ${{ github.job }} "
-  job_2:
+      - name: Run a command in Ubuntu VM
+        run: echo "This runs in Ubuntu VM"
+
+      - name: Run inside an Alpine container
+        uses: docker://alpine:latest
+        with:
+          entrypoint: /bin/sh
+          args:
+            - -c
+            - |
+              echo "This runs inside Alpine container"
+
+      - name: Run a command in Ubuntu VM again
+        run: echo "Back to Ubuntu VM"
+
+  dockerised-job:
     runs-on: ubuntu-latest
-    needs: job_1
+    container: node:20
     steps:
-      - name: mention job 2
-        run : echo " my name is  ${{ github.job }} "
-  job_3:
-    runs-on: ubuntu-latest
-    needs: job_1
-    steps:
-      - name: mention job 3
-        run : echo " my name is  ${{ github.job }} "
-  job_4:
-    runs-on: ubuntu-latest
-    needs:
-      - job_2
-      - job_3
-    steps:
-      - name: mention job 4
-        run : echo " my name is  ${{ github.job }} "
-      
-        
+      - name: Check Node.js version
+        run: node -v
+
+      - name: Run a command inside Node.js container
+        run: echo "This runs inside a Node.js container"
