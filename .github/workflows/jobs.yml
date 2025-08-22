@@ -15,7 +15,7 @@ jobs:
           args:
             - -c
             - |
-              echo "This runs inside Alpine container"
+               echo "This runs inside Alpine container"
 
       - name: Run a command in Ubuntu VM again
         run: echo "Back to Ubuntu VM"
