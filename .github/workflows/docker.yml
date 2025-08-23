@@ -1,0 +1,27 @@
+name: hybrid-job
+
+on:
+  workflow_dispatch:
+
+jobs: 
+  run-hybrid:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello from Ubuntu
+        run: echo "hello from Ubuntu"
+
+      - name: Hello from Docker (Alpine)
+        uses: docker://alpine:latest
+        with:
+          entrypoint: /bin/sh
+          args:
+            - -c
+            - echo "hello from Alpine"
+
+  run-container:
+    runs-on: ubuntu-latest
+    container:
+      image: node:20
+    steps: 
+      - run: node --version
+      - run: echo "hello from container"
