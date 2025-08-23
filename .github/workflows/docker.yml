@@ -15,8 +15,7 @@ jobs:
         with:
           entrypoint: /bin/sh
           args:
-            - -c
-            - echo "hello from Alpine"
+            - -c "echo 'hello from Alpine'"
 
   run-container:
     runs-on: ubuntu-latest
