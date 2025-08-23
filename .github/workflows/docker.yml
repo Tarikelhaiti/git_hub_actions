@@ -14,8 +14,8 @@ jobs:
         uses: docker://alpine:latest
         with:
           entrypoint: /bin/sh
-          args:
-            - -c "echo 'hello from Alpine'"
+          args: |
+            -c echo " hello frm alpine" 
 
   run-container:
     runs-on: ubuntu-latest
