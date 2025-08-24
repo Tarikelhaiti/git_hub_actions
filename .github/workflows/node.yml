@@ -14,14 +14,12 @@ jobs:
         node_version: [14.x, 15.x, 16.x]
 
         exclude:
-          # On enlève les combinaisons qui cassent
           - os: macos-latest
             node_version: 14.x
           - os: macos-latest
             node_version: 15.x
 
         include:
-          # On ajoute un cas spécial (bonus)
           - os: ubuntu-latest
             node_version: 18.x
             extra: "special test"
@@ -39,4 +37,8 @@ jobs:
         run: node -v
 
       - name: Show extra if defined
-        run: echo "Extra: ${{ matrix.extra || 'none' }}"
+        shell: bash
+        env:
+          EXTRA: ${{ matrix.extra }}
+        run: |
+          echo "Extra: ${EXTRA:-none}"
