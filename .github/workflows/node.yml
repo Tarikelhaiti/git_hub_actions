@@ -13,6 +13,19 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
         node_version: [14.x, 15.x, 16.x]
 
+        exclude:
+          # On enlève les combinaisons qui cassent
+          - os: macos-latest
+            node_version: 14.x
+          - os: macos-latest
+            node_version: 15.x
+
+        include:
+          # On ajoute un cas spécial (bonus)
+          - os: ubuntu-latest
+            node_version: 18.x
+            extra: "special test"
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,3 +37,6 @@ jobs:
 
       - name: Check Node.js version
         run: node -v
+
+      - name: Show extra if defined
+        run: echo "Extra: ${{ matrix.extra || 'none' }}"
