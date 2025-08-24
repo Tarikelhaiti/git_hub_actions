@@ -1,15 +1,12 @@
-name: list commands
 on:
   workflow_dispatch:
 
 jobs:
-  exemple:
-    runs-on: uburntu-latest
+  example:
+    runs-on: ubuntu-latest
     steps:
-      - name: Flag deprecated usage
-        shell: bash
-        run: |
+      - run: |
           deprecated=true
-          if [[ "$deprecated" == "true" ]]; then
-            echo "::warning title=Deprecated usage::Deprecated function found"
+          if [[ deprecated ]]; then
+            echo "::warning::Deprecated function found"
           fi
